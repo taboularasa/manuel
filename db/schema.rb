@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150217053751) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "executions", force: :cascade do |t|
     t.integer  "test_run_id"
     t.integer  "step_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20150217053751) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "executions", ["step_id"], name: "index_executions_on_step_id"
-  add_index "executions", ["test_run_id"], name: "index_executions_on_test_run_id"
+  add_index "executions", ["step_id"], name: "index_executions_on_step_id", using: :btree
+  add_index "executions", ["test_run_id"], name: "index_executions_on_test_run_id", using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "title"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150217053751) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "scenarios", ["feature_id"], name: "index_scenarios_on_feature_id"
+  add_index "scenarios", ["feature_id"], name: "index_scenarios_on_feature_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
     t.string   "title"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150217053751) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "steps", ["scenario_id"], name: "index_steps_on_scenario_id"
+  add_index "steps", ["scenario_id"], name: "index_steps_on_scenario_id", using: :btree
 
   create_table "test_plans", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -60,7 +63,13 @@ ActiveRecord::Schema.define(version: 20150217053751) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "test_runs", ["feature_id"], name: "index_test_runs_on_feature_id"
-  add_index "test_runs", ["test_plan_id"], name: "index_test_runs_on_test_plan_id"
+  add_index "test_runs", ["feature_id"], name: "index_test_runs_on_feature_id", using: :btree
+  add_index "test_runs", ["test_plan_id"], name: "index_test_runs_on_test_plan_id", using: :btree
 
+  add_foreign_key "executions", "steps"
+  add_foreign_key "executions", "test_runs"
+  add_foreign_key "scenarios", "features"
+  add_foreign_key "steps", "scenarios"
+  add_foreign_key "test_runs", "features"
+  add_foreign_key "test_runs", "test_plans"
 end

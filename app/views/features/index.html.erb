@@ -1,0 +1,18 @@
+<h1>Features index</h1>
+<ul>
+  <% @features.each do |feature| %>
+    <li><%= feature.title %></li>
+    <% feature.scenarios.each do |scenario| %>
+      <ul>
+        <li><%= scenario.title %></li>
+        <ul>
+          <% scenario.steps.each do |step| %>
+            <li><%= step.title %></li>
+          <% end %>
+        </ul>
+      </ul>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Create new feature', new_feature_path, class: 'btn btn-primary' %>
