@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :features do
     resources :scenarios
   end
+  root 'features#index'
 end
