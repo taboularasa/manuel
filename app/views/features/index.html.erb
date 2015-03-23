@@ -1,10 +1,12 @@
 <h1>Features index</h1>
 <ul>
   <% @features.each do |feature| %>
-    <li><%= feature.title %></li>
+    <li><%= link_to feature.title, edit_feature_path(feature) %></li>
     <% feature.scenarios.each do |scenario| %>
       <ul>
-        <li><%= scenario.title %></li>
+        <li>
+          <%= link_to scenario.title, edit_feature_scenario_path(feature, scenario) %>
+        </li>
         <ul>
           <% scenario.steps.each do |step| %>
             <li><%= step.title %></li>

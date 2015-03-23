@@ -1,0 +1,9 @@
+<h1>Edit Scenario</h1>
+<div class='row'>
+  <div class='col-md-12'>
+    <%= simple_form_for([feature, scenario], html: { class: 'form-horizontal' }) do |f| %>
+      <%= render partial: 'scenarios/scenario_fields', locals: { f: f, nested: false } %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

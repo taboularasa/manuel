@@ -1,12 +1,12 @@
-<div class='well'>
+<div class='well nested-fields'>
   <%= f.input :title, label: 'Scenario' %>
   <div class='row'>
     <div id='steps' class='col-md-11 col-md-offset-1'>
       <%= f.simple_fields_for :steps do |step| %>
-        <%= render partial: 'features/step_fields', locals: { f: step } %>
+        <%= render partial: 'steps/step_fields', locals: { f: step } %>
       <% end %>
       <div class='links'>
-        <%= link_to_add_association 'add step', f, :steps %>
+        <%= render partial: (nested ? 'scenarios/field_set_links' : 'scenarios/form_links'), locals: { f: f } %>
       </div>
     </div>
   </div>

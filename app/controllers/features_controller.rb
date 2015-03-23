@@ -8,10 +8,24 @@ class FeaturesController < ApplicationController
   end
 
   def create
-    binding.pry
     Feature.new(feature_params).save
-    flash[:success] = 'did it'
+    flash[:success] = 'you did it!'
     redirect_to features_path
+  end
+
+  def edit
+    @feature = Feature.find(params[:id])
+  end
+
+  def update
+    @feature = Feature.find(params[:id])
+    if @feature.update_attributes(feature_params)
+      flash[:success] = 'You updated it!'
+      redirect_to features_path
+    else
+      flash[:error] = 'Uh oh!'
+      render :edit
+    end
   end
 
   private
