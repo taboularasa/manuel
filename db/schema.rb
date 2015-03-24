@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324042611) do
+ActiveRecord::Schema.define(version: 20150324045358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,9 +63,11 @@ ActiveRecord::Schema.define(version: 20150324042611) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "tester_id"
+    t.integer  "scenario_id"
   end
 
   add_index "test_runs", ["feature_id"], name: "index_test_runs_on_feature_id", using: :btree
+  add_index "test_runs", ["scenario_id"], name: "index_test_runs_on_scenario_id", using: :btree
   add_index "test_runs", ["test_plan_id"], name: "index_test_runs_on_test_plan_id", using: :btree
   add_index "test_runs", ["tester_id"], name: "index_test_runs_on_tester_id", using: :btree
 
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150324042611) do
   add_foreign_key "scenarios", "features"
   add_foreign_key "steps", "scenarios"
   add_foreign_key "test_runs", "features"
+  add_foreign_key "test_runs", "scenarios"
   add_foreign_key "test_runs", "test_plans"
   add_foreign_key "test_runs", "testers"
 end

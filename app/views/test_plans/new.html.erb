@@ -1,0 +1,5 @@
+<%= simple_form_for @test_plan do |f| %>
+  <%= f.simple_fields_for :test_runs do |test_run_fields| %>
+    <%= test_run_fields.association :scenario %>
+  <% end %>
+<% end %>
