@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324041841) do
+ActiveRecord::Schema.define(version: 20150324042611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150324041841) do
     t.integer  "step_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "result_cd"
   end
 
   add_index "executions", ["step_id"], name: "index_executions_on_step_id", using: :btree
@@ -61,10 +62,12 @@ ActiveRecord::Schema.define(version: 20150324041841) do
     t.integer  "feature_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "tester_id"
   end
 
   add_index "test_runs", ["feature_id"], name: "index_test_runs_on_feature_id", using: :btree
   add_index "test_runs", ["test_plan_id"], name: "index_test_runs_on_test_plan_id", using: :btree
+  add_index "test_runs", ["tester_id"], name: "index_test_runs_on_tester_id", using: :btree
 
   create_table "testers", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -90,4 +93,5 @@ ActiveRecord::Schema.define(version: 20150324041841) do
   add_foreign_key "steps", "scenarios"
   add_foreign_key "test_runs", "features"
   add_foreign_key "test_runs", "test_plans"
+  add_foreign_key "test_runs", "testers"
 end

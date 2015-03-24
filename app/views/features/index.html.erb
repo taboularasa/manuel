@@ -1,4 +1,10 @@
 <h1>Features index</h1>
+<div class="row">
+  <div class="col-sm-offset-6 col-sm-6">
+    <%= link_to 'Register', new_tester_registration_path, class: 'btn btn-default' %>
+    <%= link_to 'Sign in', new_tester_session_path, class: 'btn btn-default' %>
+  </div>
+</div>
 <ul>
   <% @features.each do |feature| %>
     <li><%= link_to feature.title, edit_feature_path(feature) %></li>
@@ -17,4 +23,11 @@
   <% end %>
 </ul>
 
-<%= link_to 'Create new feature', new_feature_path, class: 'btn btn-primary' %>
+<div class="row">
+  <div class="col-sm-6">
+    <%= link_to 'Create new feature', new_feature_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="col-sm-6">
+    <%= link_to 'Create new test plan', new_test_plan_path, class: 'btn btn-primary' %>
+  </div>
+</div>
