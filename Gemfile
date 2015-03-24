@@ -10,6 +10,7 @@ gem 'jquery-rails', '~> 4.0.3'
 gem 'simple_form', '~> 3.1.0'
 gem 'cocoon', '~> 1.2.6'
 gem 'devise', '~> 3.4.1'
+gem 'devise-bootstrap-views', '~> 0.0.4'
 
 group :development do
   gem 'better_errors', '~> 2.1.1'

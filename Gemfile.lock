@@ -71,6 +71,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.4)
     erubis (2.7.0)
     execjs (2.4.0)
     globalid (0.3.3)
@@ -180,6 +181,7 @@ DEPENDENCIES
   cocoon (~> 1.2.6)
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.1)
+  devise-bootstrap-views (~> 0.0.4)
   jquery-rails (~> 4.0.3)
   pg (~> 0.18.1)
   pry-byebug (~> 3.1.0)
