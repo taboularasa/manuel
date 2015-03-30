@@ -1,0 +1,8 @@
+<div class='col-md-3 nested-fields'>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <%= test_run.input :scenario, collection: Scenario.all, multiple: true %>
+      <%= link_to_remove_association('delete this scenario', test_run) %>
+    </div>
+  </div>
+</div>

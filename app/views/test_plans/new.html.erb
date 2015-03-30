@@ -1,5 +1,15 @@
+<h1>Create new Test Plan</h1>
 <%= simple_form_for @test_plan do |f| %>
-  <%= f.simple_fields_for :test_runs do |test_run_fields| %>
-    <%= test_run_fields.association :scenario %>
+  <h4>Assign Testers</h4>
+  <%= f.association :testers, label_method: :email, as: :check_boxes %>
+  <h4>Add Test Runs</h4>
+  <%= f.simple_fields_for :test_runs do |test_run| %>
+    <div id='test_runs' class="row">
+      <%= render partial: "test_plans/test_run_fields", locals: { test_run: test_run, f: f  } %>
+      <div class='links'>
+        <%= link_to_add_association 'add test run', f, :test_runs, partial: 'test_plans/test_run_fields', render_options: { locals: { test_run: test_run, f: f  } }, class: 'btn btn-default' %>
+      </div>
+    </div>
   <% end %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
